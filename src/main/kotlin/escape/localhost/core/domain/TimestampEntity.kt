@@ -21,4 +21,3 @@ class TimestampEntity {
     var updatedAt: LocalDateTime = LocalDateTime.now()
         protected set
 }
-

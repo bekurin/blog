@@ -6,7 +6,7 @@ import jakarta.persistence.Entity
 class Student(
     name: String,
     password: String,
-    email: String
+    email: String,
 ) : BaseEntity() {
 
     var name: String = name

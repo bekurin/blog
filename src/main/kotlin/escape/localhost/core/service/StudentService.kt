@@ -7,9 +7,8 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class StudentService(
-    private val studentRepository: StudentRepository
+    private val studentRepository: StudentRepository,
 ) {
-
     @Transactional
     fun registerStudent(student: Student): Student {
         studentRepository.findByEmail(student.email)

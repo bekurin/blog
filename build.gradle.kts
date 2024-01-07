@@ -55,3 +55,11 @@ allOpen {
 noArg {
     annotation("jakarta.persistence.Entity")
 }
+
+tasks.bootJar {
+    enabled = true
+}
+
+tasks.jar {
+    enabled = false
+}

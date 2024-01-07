@@ -1,14 +1,14 @@
 package escape.localhost.core.service
 
-import escape.localhost.core.TestFixture.StudentSubject
+import escape.localhost.core.domain.Student
 import escape.localhost.core.domain.repository.StudentRepository
+import escape.localhost.core.testfixture.StudentSubject
 import org.assertj.core.api.SoftAssertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.BDDMockito.doNothing
+import org.mockito.BDDMockito.any
 import org.mockito.BDDMockito.given
 import org.mockito.InjectMocks
 import org.mockito.Mock
@@ -52,7 +52,10 @@ class StudentServiceTest {
             fun `존재하지 않는 이메일인 경우`() {
                 // given
                 val student = StudentSubject().of()
-                doNothing().`when`(studentRepository.findByEmail(student.email))
+                given(studentRepository.findByEmail(student.email))
+                    .willReturn(Optional.empty())
+                given(studentRepository.save(any(Student::class.java)))
+                    .willReturn(student)
 
                 // when
                 val savedStudent = sut.registerStudent(student)
