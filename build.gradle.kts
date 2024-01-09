@@ -50,16 +50,18 @@ tasks.withType<Test> {
 allOpen {
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
 }
 
 noArg {
     annotation("jakarta.persistence.Entity")
 }
 
-tasks.bootJar {
-    enabled = true
-}
-
-tasks.jar {
-    enabled = false
+tasks.apply {
+    bootJar {
+        enabled = true
+    }
+    jar {
+        enabled = false
+    }
 }

@@ -1,6 +1,6 @@
 package escape.localhost.core.service
 
-import escape.localhost.core.domain.Student
+import escape.localhost.core.domain.User
 import escape.localhost.core.domain.repository.StudentRepository
 import escape.localhost.core.testfixture.StudentSubject
 import org.assertj.core.api.SoftAssertions
@@ -16,10 +16,10 @@ import org.mockito.junit.jupiter.MockitoExtension
 import java.util.*
 
 @ExtendWith(MockitoExtension::class)
-class StudentServiceTest {
+class UserServiceTest {
 
     @InjectMocks
-    private lateinit var sut: StudentService
+    private lateinit var sut: UserService
 
     @Mock
     private lateinit var studentRepository: StudentRepository
@@ -40,7 +40,7 @@ class StudentServiceTest {
 
                 // when & then
                 assertThrows<IllegalArgumentException> {
-                    sut.registerStudent(student)
+                    sut.register(student)
                 }
             }
         }
@@ -54,11 +54,11 @@ class StudentServiceTest {
                 val student = StudentSubject().of()
                 given(studentRepository.findByEmail(student.email))
                     .willReturn(Optional.empty())
-                given(studentRepository.save(any(Student::class.java)))
+                given(studentRepository.save(any(User::class.java)))
                     .willReturn(student)
 
                 // when
-                val savedStudent = sut.registerStudent(student)
+                val savedStudent = sut.register(student)
 
                 // then
                 SoftAssertions.assertSoftly { softly ->

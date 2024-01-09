@@ -3,7 +3,7 @@ package escape.localhost.core.domain
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class StudentTest {
+class UserTest {
 
     @Test
     fun `회원 생성을 할 때 이름이 2글자 미만인 경우 예외가 발생한다`() {
@@ -13,7 +13,7 @@ class StudentTest {
 
         // when & then
         assertThrows<IllegalStateException> {
-            Student(invalidName, password, email)
+            User(invalidName, password, email)
         }
     }
 
@@ -25,7 +25,7 @@ class StudentTest {
 
         // when & then
         assertThrows<IllegalStateException> {
-            Student(name, password, invalidEmail)
+            User(name, password, invalidEmail)
         }
     }
 }
